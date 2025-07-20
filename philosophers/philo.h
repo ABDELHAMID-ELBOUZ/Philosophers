@@ -6,7 +6,7 @@
 /*   By: abdelhamid <abdelhamid@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 15:07:52 by abdelhamid        #+#    #+#             */
-/*   Updated: 2025/07/16 15:08:10 by abdelhamid       ###   ########.fr       */
+/*   Updated: 2025/07/18 10:41:02 by abdelhamid       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ long	ft_atol(const char *str);
 long	get_current_time(void);
 void	print_action(t_philo *philo, char *action);
 int		parse_args(int ac, char **av, t_data *data);
-int		init_program(t_data *data);
+int		init_all(t_data *data);
 void	ft_usleep(size_t time, t_data *data);
 void	monitor_philosophers(t_data *data);
 int		create_philo_threads(t_data *data);

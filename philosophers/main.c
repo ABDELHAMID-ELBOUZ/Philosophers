@@ -6,7 +6,7 @@
 /*   By: abdelhamid <abdelhamid@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 08:57:32 by abdelhamid        #+#    #+#             */
-/*   Updated: 2025/07/16 15:04:33 by abdelhamid       ###   ########.fr       */
+/*   Updated: 2025/07/19 12:58:06 by abdelhamid       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,15 @@ void	handle_single_philo(t_philo *philo)
 	print_action(philo, "died");
 }
 
-void	start_simulation(t_data *data)
+void	start_philosophers(t_data *data)
 {
 	int	i;
 
 	if (create_philo_threads(data))
 	{
 		cleanup(data);
-		exit(1);
+		return ;
 	}
-	monitor_philosophers(data);
 	i = 0;
 	while (i < data->num_philos)
 	{
@@ -70,7 +69,7 @@ int	main(int ac, char **av)
 		return (1);
 	if (data.num_philos == 1)
 	{
-		if (init_program(&data))
+		if (init_all(&data))
 		{
 			cleanup(&data);
 			return (1);
@@ -79,11 +78,11 @@ int	main(int ac, char **av)
 		cleanup(&data);
 		return (0);
 	}
-	if (init_program(&data) == 1)
+	if (init_all(&data) == 1)
 	{
 		cleanup(&data);
 		return (1);
 	}
-	start_simulation(&data);
+	start_philosophers(&data);
 	cleanup(&data);
 }

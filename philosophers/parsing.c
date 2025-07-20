@@ -6,7 +6,7 @@
 /*   By: abdelhamid <abdelhamid@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:28:45 by abdelhamid        #+#    #+#             */
-/*   Updated: 2025/07/16 15:05:39 by abdelhamid       ###   ########.fr       */
+/*   Updated: 2025/07/17 15:20:59 by abdelhamid       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	init_mutexes(t_data *data)
 	return (0);
 }
 
-int	init_program(t_data *data)
+int	init_all(t_data *data)
 {
 	if (init_data(data) == 1)
 		return (1);

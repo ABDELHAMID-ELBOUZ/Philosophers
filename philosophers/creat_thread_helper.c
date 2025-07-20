@@ -6,7 +6,7 @@
 /*   By: abdelhamid <abdelhamid@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:45:32 by abdelhamid        #+#    #+#             */
-/*   Updated: 2025/07/16 14:59:59 by abdelhamid       ###   ########.fr       */
+/*   Updated: 2025/07/18 10:32:22 by abdelhamid       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	*philo_routine(void *arg)
 	data = philo->data;
 	philo->last_meal_time = get_current_time();
 	if (philo->id % 2)
-		usleep(100);
+		usleep(1);
 	while (!data->someone_died)
 	{
 		take_forks(philo);
