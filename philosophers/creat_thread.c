@@ -6,7 +6,7 @@
 /*   By: abdelhamid <abdelhamid@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:47:12 by abdelhamid        #+#    #+#             */
-/*   Updated: 2025/07/18 10:53:42 by abdelhamid       ###   ########.fr       */
+/*   Updated: 2025/07/20 13:18:42 by abdelhamid       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,15 @@ void	monitor_philosophers(t_data *data)
 
 void	*thread_is_dead(void *arg)
 {
-	t_philo	*philo;
-
-	philo = arg;
-	monitor_philosophers(philo->data);
+	t_data *data = arg;
+	monitor_philosophers(data);
 	return (0);
 }
 
 int	create_philo_threads(t_data *data)
 {
 	int	i;
-	pthread_t is_dead_thread;
+	// pthread_t is_dead_thread;
 
 	i = 0;
 	while (i < data->num_philos)
@@ -68,14 +66,14 @@ NULL, philo_routine, &data->philos[i]) != 0)
 			printf("Error\n");
 			return (1);
 		}
-		if (pthread_create(&is_dead_thread, NULL, thread_is_dead, &data->philos) != 0)
-		{
-			printf("Error\n");
-			return (1);
-		}
 		if (data->num_philos > 1)
-			usleep(3);
+			usleep(10);
 		i++;
+	}
+	if (pthread_create(&data->is_dead_thread, NULL, thread_is_dead, data) != 0)
+	{
+		printf("Error\n");
+		return (1);
 	}
 	return (0);
 }

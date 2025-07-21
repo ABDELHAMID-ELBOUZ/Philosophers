@@ -6,7 +6,7 @@
 /*   By: abdelhamid <abdelhamid@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 15:07:52 by abdelhamid        #+#    #+#             */
-/*   Updated: 2025/07/18 10:41:02 by abdelhamid       ###   ########.fr       */
+/*   Updated: 2025/07/20 13:15:26 by abdelhamid       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_data
 	pthread_mutex_t	death_mutex;
 	int				someone_died;
 	t_philo			*philos;
+	pthread_t		is_dead_thread;
 }	t_data;
 
 int		is_digit(const char *s);
