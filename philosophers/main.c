@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdelhamid <abdelhamid@student.42.fr>      +#+  +:+       +#+        */
+/*   By: aelbouz <aelbouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/15 08:57:32 by abdelhamid        #+#    #+#             */
-/*   Updated: 2025/07/19 12:58:06 by abdelhamid       ###   ########.fr       */
+/*   Created: 2025/07/22 10:17:57 by aelbouz           #+#    #+#             */
+/*   Updated: 2025/07/25 10:51:57 by aelbouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	start_philosophers(t_data *data)
 			printf("Error\n");
 		i++;
 	}
+	if (pthread_join(data->is_dead_thread, NULL) != 0)
+		printf("Error\n");
 }
 
 int	main(int ac, char **av)

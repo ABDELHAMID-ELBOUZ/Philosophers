@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdelhamid <abdelhamid@student.42.fr>      +#+  +:+       +#+        */
+/*   By: aelbouz <aelbouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/15 09:11:44 by abdelhamid        #+#    #+#             */
-/*   Updated: 2025/07/16 14:54:39 by abdelhamid       ###   ########.fr       */
+/*   Created: 2025/07/22 10:17:31 by aelbouz           #+#    #+#             */
+/*   Updated: 2025/07/22 10:44:32 by aelbouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	print_action(t_philo *philo, char *str)
 		time = get_current_time() - philo->data->start_time;
 		pthread_mutex_lock(&philo->data->print_mutex);
 		pthread_mutex_lock(&philo->data->death_mutex);
-		if (!philo->data->someone_died || ft_strcmp(str, "died") == 0)
+		if (!philo->data->someone_died)
 			printf("%ld %d %s\n", time, philo->id, str);
 		pthread_mutex_unlock(&philo->data->death_mutex);
 		pthread_mutex_unlock(&philo->data->print_mutex);

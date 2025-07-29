@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdelhamid <abdelhamid@student.42.fr>      +#+  +:+       +#+        */
+/*   By: aelbouz <aelbouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/16 15:07:52 by abdelhamid        #+#    #+#             */
-/*   Updated: 2025/07/20 13:15:26 by abdelhamid       ###   ########.fr       */
+/*   Created: 2025/07/22 10:18:22 by aelbouz           #+#    #+#             */
+/*   Updated: 2025/07/25 10:44:55 by aelbouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,5 @@ int		create_philo_threads(t_data *data);
 void	*philo_routine(void *arg);
 int		did_anyone_die(t_data *data, int i);
 int		check_everyone_full(t_data *data);
+int		check_is_someone_died(t_data	*data);
 #endif

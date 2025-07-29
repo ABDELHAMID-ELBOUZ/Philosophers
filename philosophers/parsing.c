@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdelhamid <abdelhamid@student.42.fr>      +#+  +:+       +#+        */
+/*   By: aelbouz <aelbouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/15 12:28:45 by abdelhamid        #+#    #+#             */
-/*   Updated: 2025/07/17 15:20:59 by abdelhamid       ###   ########.fr       */
+/*   Created: 2025/07/22 10:18:09 by aelbouz           #+#    #+#             */
+/*   Updated: 2025/07/22 10:18:12 by aelbouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	parse_args(int ac, char **av, t_data *data)
 	else
 		data->meals_needed = -1;
 	if (data->num_philos <= 0 || data->time_to_die <= 0 || \
-data->time_to_eat <= 0 || data->time_to_sleep <= 0 || \
-(ac == 6 && data->meals_needed <= 0))
+	data->time_to_eat <= 0 || data->time_to_sleep <= 0 || \
+	(ac == 6 && data->meals_needed <= 0))
 	{
 		printf("Error: Invalid argument values\n");
 		return (1);
@@ -111,10 +111,6 @@ int	init_all(t_data *data)
 	if (init_data(data) == 1)
 		return (1);
 	if (init_mutexes(data) == 1)
-	{
-		free(data->philos);
-		free(data->forks);
 		return (1);
-	}
 	return (0);
 }

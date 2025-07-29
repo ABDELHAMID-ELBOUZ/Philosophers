@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   creat_thread.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdelhamid <abdelhamid@student.42.fr>      +#+  +:+       +#+        */
+/*   By: aelbouz <aelbouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/16 14:47:12 by abdelhamid        #+#    #+#             */
-/*   Updated: 2025/07/20 13:18:42 by abdelhamid       ###   ########.fr       */
+/*   Created: 2025/07/22 10:17:14 by aelbouz           #+#    #+#             */
+/*   Updated: 2025/07/25 14:58:35 by aelbouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	check_is_someone_died(t_data	*data)
+{
+	int	result;
+
+	pthread_mutex_lock(&data->death_mutex);
+	result = data->someone_died;
+	pthread_mutex_unlock(&data->death_mutex);
+	return (result);
+}
 
 void	ft_usleep(size_t time, t_data *data)
 {
@@ -19,9 +29,14 @@ void	ft_usleep(size_t time, t_data *data)
 	start = get_current_time();
 	while ((get_current_time() - start) < time)
 	{
+		pthread_mutex_lock(&data->death_mutex);
 		if (data->someone_died)
+		{
+			pthread_mutex_unlock(&data->death_mutex);
 			return ;
-		usleep(1);
+		}
+		pthread_mutex_unlock(&data->death_mutex);
+		usleep(10);
 	}
 }
 
@@ -47,7 +62,9 @@ void	monitor_philosophers(t_data *data)
 
 void	*thread_is_dead(void *arg)
 {
-	t_data *data = arg;
+	t_data	*data;
+
+	data = arg;
 	monitor_philosophers(data);
 	return (0);
 }
@@ -55,13 +72,12 @@ void	*thread_is_dead(void *arg)
 int	create_philo_threads(t_data *data)
 {
 	int	i;
-	// pthread_t is_dead_thread;
 
 	i = 0;
 	while (i < data->num_philos)
 	{
 		if (pthread_create(&data->philos[i].thread, \
-NULL, philo_routine, &data->philos[i]) != 0)
+		NULL, philo_routine, &data->philos[i]) != 0)
 		{
 			printf("Error\n");
 			return (1);

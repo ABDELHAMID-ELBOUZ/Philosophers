@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   creat_thread_helper.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdelhamid <abdelhamid@student.42.fr>      +#+  +:+       +#+        */
+/*   By: aelbouz <aelbouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/16 14:45:32 by abdelhamid        #+#    #+#             */
-/*   Updated: 2025/07/20 13:27:59 by abdelhamid       ###   ########.fr       */
+/*   Created: 2025/07/22 10:17:47 by aelbouz           #+#    #+#             */
+/*   Updated: 2025/07/25 10:45:14 by aelbouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,22 +55,24 @@ void	*philo_routine(void *arg)
 	t_philo	*philo;
 	t_data	*data;
 
-	philo = (t_philo *)arg;
+	philo = arg;
 	data = philo->data;
+	pthread_mutex_lock(&data->print_mutex);
 	philo->last_meal_time = get_current_time();
+	pthread_mutex_unlock(&data->print_mutex);
 	if (philo->id % 2)
-		usleep(1);
-	while (!data->someone_died)
+		usleep(100);
+	while (check_is_someone_died(data) != 1)
 	{
 		take_forks(philo);
 		philo_state(philo);
-		if (data->someone_died)
+		if (check_is_someone_died(data) == 1)
 			break ;
 		if (data->meals_needed > 0 && philo->meals_eaten >= data->meals_needed)
 			break ;
 		print_action(philo, "is sleeping");
 		ft_usleep(data->time_to_sleep, data);
-		if (data->someone_died)
+		if (check_is_someone_died(data) == 1)
 			break ;
 		print_action(philo, "is thinking");
 	}
